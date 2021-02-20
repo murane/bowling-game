@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class Frame {
 
@@ -6,6 +6,7 @@ public class Frame {
     private static final int INITIAL_TRIAL_CNT = 2;
     private final Count pinCnt;
     private final Count trialCnt;
+    private List<Integer> rolls = new ArrayList<>();
 
     public Frame() {
         this.pinCnt = new Count(INITIAL_PIN_CNT);
@@ -20,10 +21,32 @@ public class Frame {
         return trialCnt.getValue();
     }
 
+    public boolean isSpare() {
+        return pinCnt.getValue() == 0 || trialCnt.getValue() == 0;
+    }
+
+    public boolean isStrike() {
+        return pinCnt.getValue() == 0 || trialCnt.getValue() == 1;
+    }
+
+    private boolean isEnd() {
+        if (pinCnt.getValue() == 0 || trialCnt.getValue() == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public void doFrame() {
+        while (!isEnd()) {
+            doRoll();
+        }
+    }
+
     public void doRoll() {
         int downPinCnt = generateRandomNumber(pinCnt.getValue());
         pinCnt.minus(downPinCnt);
         trialCnt.minus(1);
+        rolls.add(downPinCnt);
     }
 
     private int generateRandomNumber(int num) {

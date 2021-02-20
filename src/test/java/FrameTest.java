@@ -2,10 +2,10 @@
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FrameTest {
+
     @Test
     void testRoll() {
         Frame frame = new Frame();
