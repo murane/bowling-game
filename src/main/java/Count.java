@@ -1,7 +1,8 @@
-public class PinCount {
+public class Count {
+
     int count;
 
-    public PinCount(int count) {
+    public Count(int count) {
         this.count = count;
         checkRange();
     }
@@ -16,7 +17,7 @@ public class PinCount {
     }
 
     private void checkRange() {
-        if(count < 0) {
+        if (count < 0) {
             throw new IllegalStateException("PinCount can't be negative integer.");
         }
     }

@@ -2,6 +2,7 @@
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FrameTest {
@@ -12,5 +13,12 @@ class FrameTest {
         frame.doRoll();
         int currentPinCnt = frame.getPinCnt();
         Assertions.assertTrue(0 <= currentPinCnt && currentPinCnt <= initialPinCnt);
+    }
+
+    @Test
+    void testTrial() {
+        Frame frame = new Frame();
+        frame.doRoll();
+        assertEquals(frame.getTrialCnt(), 1);
     }
 }

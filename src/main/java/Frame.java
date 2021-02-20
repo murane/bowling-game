@@ -1,24 +1,34 @@
 import java.util.Random;
 
 public class Frame {
+
     private static final int INITIAL_PIN_CNT = 10;
-    private final PinCount pinCnt;
+    private static final int INITIAL_TRIAL_CNT = 2;
+    private final Count pinCnt;
+    private final Count trialCnt;
 
     public Frame() {
-        this.pinCnt = new PinCount(INITIAL_PIN_CNT);
+        this.pinCnt = new Count(INITIAL_PIN_CNT);
+        this.trialCnt = new Count(INITIAL_TRIAL_CNT);
     }
 
     public int getPinCnt() {
         return pinCnt.getValue();
     }
 
+    public int getTrialCnt() {
+        return trialCnt.getValue();
+    }
+
     public void doRoll() {
         int downPinCnt = generateRandomNumber(pinCnt.getValue());
         pinCnt.minus(downPinCnt);
+        trialCnt.minus(1);
     }
 
     private int generateRandomNumber(int num) {
         Random random = new Random();
         return random.nextInt(num + 1);
     }
+
 }
